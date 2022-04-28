@@ -25,6 +25,9 @@ class Player(Movable):
     Class that extends "Movable" class.
     """
     def __init__(self):
+        """
+        Constructor
+        """
         super().__init__()
 
     def move(self):
@@ -39,6 +42,9 @@ class Enemy(Movable):
     Class that extends "Movable" class.
     """
     def __init__(self):
+        """
+        Constructor
+        """
         super().__init__()
 
     def move(self):
@@ -157,6 +163,10 @@ class Location:
         self._y = y
 
     def __str__(self):
+        """
+        Return string of the location.
+        :return: String
+        """
         return ''.join('(' + str(self.x) + ", " + str(self.y) + ')')
 
 

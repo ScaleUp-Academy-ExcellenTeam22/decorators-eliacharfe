@@ -10,6 +10,7 @@ def type_check(correct_type: type):
     A decorator factory which returns a decorator that decorates functions with one argument.
     Get a type and return a decorator that checks if the parameter the function receives is of
     the correct type.
+
     :param correct_type: The correct type that the argument sent to the function should be.
     :return: A decorator that checks if the parameter the function receives is of the correct type.
     """
@@ -17,6 +18,7 @@ def type_check(correct_type: type):
         """
         A decorator that get a function and returns the return value of an inner function that
         check if the argument sent to the function is of the correct type.
+
         :param function: The function that need to check if got the correct type like defined.
         to the function.
         :return: The return value of the inner function.
@@ -27,6 +29,7 @@ def type_check(correct_type: type):
             Get the argument sent to the function and raise exception if the type of the argument
             is not like the type defined to the function, if not raised, return the return value
             of the function.
+
             :param argument: The argument sent to the function.
             :return: The return value of the function that should be test its argument..
             """
@@ -41,6 +44,7 @@ def type_check(correct_type: type):
 def times2int(num: int) -> int:
     """
     Get an integer and return the integer multiply by 2.
+
     :param num: An integer.
     :return: The integer sent multiply by 2.
     """
@@ -51,6 +55,7 @@ def times2int(num: int) -> int:
 def times2float(num: float) -> float:
     """
     Get a float and return the float multiply by 2.
+
     :param num: A float number.
     :return: The float sent multiply by 2.
     """
@@ -61,6 +66,7 @@ def times2float(num: float) -> float:
 def join_hello(name: str) -> str:
     """
     Get a string and return a string which start by "Hello" then the string sent.
+    
     :param name: The string sent.
     :return: A string which start by "Hello" then the string sent.
     """

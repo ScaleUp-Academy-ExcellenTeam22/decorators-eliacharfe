@@ -60,6 +60,7 @@ class Enemy(Movable):
 def is_greater_than(_, __):
     """
     A decorator that wrap a function with 2 arguments that its type is registered.
+
     :param _: First argument.
     :param __: Second argument.
     :raise: TypeError()
@@ -71,6 +72,7 @@ def is_greater_than(_, __):
 def _(first_integer: int, second_integer: int) -> None:
     """
     Get 2 integers and print True if the first is greater than second, else False.
+
     :param first_integer: An integer.
     :param second_integer: An integer.
     """
@@ -81,6 +83,7 @@ def _(first_integer: int, second_integer: int) -> None:
 def _(first_float: float, second_float: float) -> None:
     """
     Get 2 floats and print True if the first is greater than second, else False.
+
     :param first_float: A float.
     :param second_float: A float.
      """
@@ -91,6 +94,7 @@ def _(first_float: float, second_float: float) -> None:
 def _(first_string: str, second_string: str) -> None:
     """
     Get 2 strings and print True if the first is greater alphabetically than second, else False.
+
     :param first_string: A string.
     :param second_string: A string.
     """
@@ -105,6 +109,7 @@ def _(first_list: list, second_list: list) -> None:
     at the same index. Note that all values at the same indexes need to be comparable (int - int,
     str - str, float - float etc...)
     Possible usage:  is_greater_than( [3, "abc", 2.5], [3, "xyz", 5.7] )
+
     :param first_list: A list.
     :param second_list: A list.
     """
@@ -120,6 +125,7 @@ class Location:
     def __init__(self, x, y):
         """
         Constructor
+
         :param x: x coordinate of the location.
         :param y: y coordinate of the location.
         """
@@ -130,6 +136,7 @@ class Location:
     def x(self):
         """
         Getter
+
         :return: An instance of x.
         """
         return self._x
@@ -138,6 +145,7 @@ class Location:
     def x(self, x):
         """
         Set the x instance to the parameter sent if it is an integer or a float else throw exception.
+
         :param x: The new x coordinate to set.
         """
         if not isinstance(x, int) and not isinstance(x, float):
@@ -148,6 +156,7 @@ class Location:
     def y(self):
         """
         Getter
+
         :return: An instance of y.
         """
         return self._y
@@ -156,6 +165,7 @@ class Location:
     def y(self, y):
         """
         Set the y instance to the parameter sent if it is an integer or a float else throw exception.
+
         :param y: The new y coordinate to set.
         """
         if not isinstance(y, int) and not isinstance(y, float):
@@ -165,6 +175,7 @@ class Location:
     def __str__(self):
         """
         Return string of the location.
+        
         :return: String
         """
         return ''.join('(' + str(self.x) + ", " + str(self.y) + ')')

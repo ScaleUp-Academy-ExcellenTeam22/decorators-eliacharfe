@@ -50,10 +50,10 @@ def times2int(num: int) -> int:
 @type_check(float)
 def times2float(num: float) -> float:
     """
-       Get a float and return the float multiply by 2.
-       :param num: A float number.
-       :return: The float sent multiply by 2.
-       """
+    Get a float and return the float multiply by 2.
+    :param num: A float number.
+    :return: The float sent multiply by 2.
+    """
     return num * 2
 
 

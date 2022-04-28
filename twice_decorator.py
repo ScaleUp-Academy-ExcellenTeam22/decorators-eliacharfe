@@ -1,3 +1,4 @@
+from pyclbr import Function
 import decorator
 
 
@@ -5,7 +6,7 @@ class CustomError(Exception):
     pass
 
 
-def twice_decorator(func):
+def twice_decorator(func: Function):
     """
     A decorator that executes the function it wraps twice.
     :param func: The function that have the property @twice_decorator that been called.

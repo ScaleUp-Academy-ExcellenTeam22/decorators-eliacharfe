@@ -3,33 +3,48 @@ from functools import singledispatch
 
 
 class Movable(ABC):
-    """Class that extends "ABS" built-in class. """
+    """
+    Class that extends "ABS" built-in class.
+    """
     def __init__(self):
+        """
+        Constructor
+        """
         pass
 
     @abstractmethod
     def move(self):
-        """Abstract method that need to be implement in the successors of this class."""
+        """
+        Abstract method that need to be implement in the successors of this class.
+        """
         pass
 
 
 class Player(Movable):
-    """Class that extends "Movable" class. """
+    """
+    Class that extends "Movable" class.
+    """
     def __init__(self):
         super().__init__()
 
     def move(self):
-        """Implementation of the abstract method of its "parent". """
+        """
+        Implementation of the abstract method of its "parent".
+        """
         print("can move to all direction")
 
 
 class Enemy(Movable):
-    """Class that extends "Movable" class. """
+    """
+    Class that extends "Movable" class.
+    """
     def __init__(self):
         super().__init__()
 
     def move(self):
-        """Implementation of the abstract method of its "parent". """
+        """
+        Implementation of the abstract method of its "parent".
+        """
         print("can move only right or left")
 
 
@@ -93,8 +108,15 @@ def _(first_list: list, second_list: list) -> None:
 #################################
 
 class Location:
-    """A class representing a location with 2 coordinates"""
+    """
+    A class representing a location with 2 coordinates.
+    """
     def __init__(self, x, y):
+        """
+        Constructor
+        :param x: x coordinate of the location.
+        :param y: y coordinate of the location.
+        """
         self.x = x
         self.y = y
 

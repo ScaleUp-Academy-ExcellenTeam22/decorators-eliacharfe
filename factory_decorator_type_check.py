@@ -1,11 +1,13 @@
 from functools import wraps
+from typing import Callable
 
 
-class CustomError(Exception):
-    pass
+class CustomError(TypeError):
+    def __init__(self, message):
+        super().__init__(message)
 
 
-def type_check(correct_type: type):
+def type_check(correct_type: type) -> Callable:
     """
     A decorator factory which returns a decorator that decorates functions with one argument.
     Get a type and return a decorator that checks if the parameter the function receives is of
@@ -73,36 +75,24 @@ def join_hello(name: str) -> str:
     return ''.join(f"Hello {name}")
 
 
+def try_function(function, argument):
+    try:
+        function(argument)
+    except CustomError as e:
+        print(e)
+
+
 if __name__ == '__main__':
-    try:
-        print(times2int(20))  # 40
-        times2int(3.5)  # raise exception
-    except CustomError as e:
-        print(e)
 
-    try:
-        times2int('dsjaka')  # raise exception
-    except CustomError as e:
-        print(e)
+    try_function(times2int, 20)
+    try_function(times2int, 3.5)  # raise exception
+    try_function(times2int, "Some string")  # raise exception
 
-    try:
-        times2float(4.7)
-        times2float(4)  # raise exception
-    except CustomError as e:
-        print(e)
+    try_function(times2float, 4.7)
+    try_function(times2float, 4)  # raise exception
+    try_function(times2float, "Some string")  # raise exception
 
-    try:
-        times2float('dsjaka')  # raise exception
-    except CustomError as e:
-        print(e)
+    try_function(join_hello, "Jhon")  # raise exception
+    try_function(join_hello, 3)  # raise exception
+    try_function(join_hello, 7.8)  # raise exception
 
-    try:
-        join_hello('Boby')
-        join_hello(7.8)  # raise exception
-    except CustomError as e:
-        print(e)
-
-    try:
-        join_hello(2)  # raise exception
-    except CustomError as e:
-        print(e)

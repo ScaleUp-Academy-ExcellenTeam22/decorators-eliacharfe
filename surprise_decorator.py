@@ -1,14 +1,11 @@
+from typing import Callable
 
 
-class CustomError(Exception):
-    pass
-
-
-def surprise_decorator(function):
+def surprise_decorator(function) -> Callable:
     """
     A decorator that decorate a function with/without arguments, and print "surprise"
     instead of the original functionality of the function.
-    :param function: A function that have the property "surprise_decorator".
+    :param function: A function that have the property "@surprise_decorator".
     :return: The inner function.
     """
 
@@ -23,7 +20,7 @@ def surprise_decorator(function):
 
 
 @surprise_decorator
-def times2int(num):
+def times2int(num: int) -> int:
     """
     Get an integer and return the integer multiply by 2.
     :param num: An integer.
@@ -33,7 +30,7 @@ def times2int(num):
 
 
 @surprise_decorator
-def times2float(num):
+def times2float(num: float) -> float:
     """
     Get a float and return the float multiply by 2.
     :param num: A float number.
@@ -43,7 +40,7 @@ def times2float(num):
 
 
 @surprise_decorator
-def join_hello(name):
+def join_hello(name: str) -> str:
     """
     Get a string and return a string which start by "Hello" then the string sent.
     :param name: The string sent.

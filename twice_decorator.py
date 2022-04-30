@@ -1,12 +1,10 @@
 from pyclbr import Function
+from typing import Callable
+
 import decorator
 
 
-class CustomError(Exception):
-    pass
-
-
-def twice_decorator(func: Function):
+def twice_decorator(func: Function) -> Callable:
     """
     A decorator that executes the function it wraps twice.
 
@@ -40,8 +38,7 @@ def times2(num: int) -> int:
 
 
 if __name__ == '__main__':
-    try:
-        times2(5)
-    except Exception as e:
-        print(e)
+
+    times2(5)
+
 

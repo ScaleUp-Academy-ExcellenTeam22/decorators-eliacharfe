@@ -7,13 +7,10 @@ class Movable(ABC):
     Class that extends "ABS" built-in class.
     """
     def __init__(self):
-        """
-        Constructor
-        """
         pass
 
     @abstractmethod
-    def move(self):
+    def move(self) -> None:
         """
         Abstract method that need to be implement in the successors of this class.
         """
@@ -24,13 +21,11 @@ class Player(Movable):
     """
     Class that extends "Movable" class.
     """
-    def __init__(self):
-        """
-        Constructor
-        """
+    def __init__(self, age=0):
         super().__init__()
+        self.age = age
 
-    def move(self):
+    def move(self) -> None:
         """
         Implementation of the abstract method of its "parent".
         """
@@ -42,12 +37,9 @@ class Enemy(Movable):
     Class that extends "Movable" class.
     """
     def __init__(self):
-        """
-        Constructor
-        """
         super().__init__()
 
-    def move(self):
+    def move(self) -> None:
         """
         Implementation of the abstract method of its "parent".
         """
@@ -57,10 +49,9 @@ class Enemy(Movable):
 ###################################
 
 @singledispatch
-def is_greater_than(_, __):
+def print_is_greater_than(_, __):
     """
     A decorator that wrap a function with 2 arguments that its type is registered.
-
     :param _: First argument.
     :param __: Second argument.
     :raise: TypeError()
@@ -68,40 +59,37 @@ def is_greater_than(_, __):
     raise TypeError()
 
 
-@is_greater_than.register(int)
+@print_is_greater_than.register(int)
 def _(first_integer: int, second_integer: int) -> None:
     """
     Get 2 integers and print True if the first is greater than second, else False.
-
     :param first_integer: An integer.
     :param second_integer: An integer.
     """
     print(first_integer > second_integer)
 
 
-@is_greater_than.register(float)
+@print_is_greater_than.register(float)
 def _(first_float: float, second_float: float) -> None:
     """
     Get 2 floats and print True if the first is greater than second, else False.
-
     :param first_float: A float.
     :param second_float: A float.
      """
     print(first_float > second_float)
 
 
-@is_greater_than.register(str)
+@print_is_greater_than.register(str)
 def _(first_string: str, second_string: str) -> None:
     """
     Get 2 strings and print True if the first is greater alphabetically than second, else False.
-
     :param first_string: A string.
     :param second_string: A string.
     """
     print(first_string > second_string)
 
 
-@is_greater_than.register(list)
+@print_is_greater_than.register(list)
 def _(first_list: list, second_list: list) -> None:
     """
     Get 2 lists and print True if the first is greater than second, else False.
@@ -116,16 +104,30 @@ def _(first_list: list, second_list: list) -> None:
     print(first_list > second_list)
 
 
+@print_is_greater_than.register(dict)
+def _(first_dict: dict, second_dict: dict) -> None:
+    for key, value in first_dict.items():
+        for key2, value2 in second_dict.items():
+            if key > key2:
+                print(key)
+            else:
+                print(key2)
+
+
+@print_is_greater_than.register(Player)
+def _(first_player: Player, second_player: Player) -> None:
+    print(first_player.age > second_player.age)
+
+
 #################################
 
 class Location:
     """
     A class representing a location with 2 coordinates.
     """
-    def __init__(self, x, y):
+    def __init__(self, x: [int, float], y: [int, float]) -> None:
         """
         Constructor
-
         :param x: x coordinate of the location.
         :param y: y coordinate of the location.
         """
@@ -133,19 +135,13 @@ class Location:
         self.y = y
 
     @property
-    def x(self):
-        """
-        Getter
-
-        :return: An instance of x.
-        """
+    def x(self) -> [int, float]:
         return self._x
 
     @x.setter
-    def x(self, x):
+    def x(self, x: [int, float]) -> [int, float]:
         """
         Set the x instance to the parameter sent if it is an integer or a float else throw exception.
-
         :param x: The new x coordinate to set.
         """
         if not isinstance(x, int) and not isinstance(x, float):
@@ -153,30 +149,23 @@ class Location:
         self._x = x
 
     @property
-    def y(self):
-        """
-        Getter
-
-        :return: An instance of y.
-        """
+    def y(self) -> [int, float]:
         return self._y
 
     @y.setter
-    def y(self, y):
+    def y(self, y) -> [int, float]:
         """
         Set the y instance to the parameter sent if it is an integer or a float else throw exception.
-
         :param y: The new y coordinate to set.
         """
         if not isinstance(y, int) and not isinstance(y, float):
             raise TypeError(f"type of '{y}' is not an integer nor a float")
         self._y = y
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Return string of the location.
-        
-        :return: String
+        :return: A string.
         """
         return ''.join('(' + str(self.x) + ", " + str(self.y) + ')')
 
@@ -189,13 +178,22 @@ if __name__ == '__main__':
     enemy.move()
 
     try:
-        is_greater_than(29, 7)
-        is_greater_than(3.768, 99.8765)
-        is_greater_than("akkaks", "oooooo")
-        is_greater_than([1, 2, 44], [1, 2, 43])
-        is_greater_than([3, "abc", 2.5], [3, "xyz", 5.7])
-        is_greater_than(8, "string")  # raise exception
-        is_greater_than([1, 2, 44], ["dffggs", 2, 43])  # raise exception
+        print_is_greater_than(29, 7)
+        print_is_greater_than(3.768, 99.8765)
+        print_is_greater_than("akkaks", "oooooo")
+        print_is_greater_than([1, 2, 44], [1, 2, 43])
+        print_is_greater_than([3, "abc", 2.5], [3, "xyz", 5.7])
+
+        print_is_greater_than({"key1": "dd"}, {"key2": 5})
+
+        player1 = Player(27)
+        player2 = Player(45)
+
+        print_is_greater_than(player1, player2)
+
+        print_is_greater_than(8, "string")  # raise exception
+        print_is_greater_than([1, 2, 44], ["dffggs", 2, 43])  # raise exception
+
     except TypeError as e:
         print(e)
 

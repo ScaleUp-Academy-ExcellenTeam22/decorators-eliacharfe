@@ -15,16 +15,15 @@ def twice_decorator(function: Callable, argument: any) -> Callable:
 
 
 @twice_decorator
-def times2(num: int) -> int:
+def print_argument(num: int) -> None:
     """
-    Get an integer and multiply it by 2.
+    Get an integer and print it.
     :param num: An integer.
-    :return: The integer sent multiply by 2.
     """
     print(num)
 
 
 if __name__ == '__main__':
-    times2(5)
+    print_argument(5)
 
 

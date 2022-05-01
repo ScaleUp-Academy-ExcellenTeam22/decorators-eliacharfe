@@ -16,7 +16,7 @@ def type_check(correct_type: type) -> Callable:
     :param correct_type: The correct type that the argument sent to the function should be.
     :return: A decorator that checks if the parameter the function receives is of the correct type.
     """
-    def decorator_check_parameter_type(function):
+    def decorator_check_parameter_type(function: Callable) -> Callable:
         """
         A decorator that get a function and returns the return value of an inner function that
         check if the argument sent to the function is of the correct type.
@@ -26,7 +26,7 @@ def type_check(correct_type: type) -> Callable:
         :return: The return value of the inner function.
         """
         @wraps(function)
-        def inner_calculation_function(argument):
+        def inner_calculation_function(argument: any) -> any:
             """
             Get the argument sent to the function and raise exception if the type of the argument
             is not like the type defined to the function, if not raised, return the return value

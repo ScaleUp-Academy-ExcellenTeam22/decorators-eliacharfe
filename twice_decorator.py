@@ -23,7 +23,16 @@ def print_argument(num: int) -> None:
     print(num)
 
 
+@twice_decorator
+def times2(num: [int, float]) -> None:
+    """
+    Get an integer/float and return its multiply by 2.
+    :param num: An integer.
+    """
+    return num * 2
+
+
 if __name__ == '__main__':
     print_argument(5)
-
+    times2(4)
 
